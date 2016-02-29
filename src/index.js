@@ -4,14 +4,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { Provider } from 'react-redux';
-import { applyMiddleware, createStore } from 'redux';
-import createLogger from 'redux-logger';
-import thunk from 'redux-thunk';
+import Immutable from 'immutable';
 
-import reducer from './reducer';
+import configureStore from './store/configureStore';
 import App from './App.jsx';
 
-const store = applyMiddleware(thunk, createLogger())(createStore)(reducer);
+const store = configureStore(Immutable.fromJS({greeting : 'Hello.'}));
 
 ReactDOM.render(
   <Provider store={store}>
@@ -19,3 +17,8 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
+
+if (process.env.NODE_ENV === 'development') {
+  const showDevTools = require('./showDevTools').default;
+  showDevTools(store);
+}

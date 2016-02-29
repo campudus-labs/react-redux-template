@@ -4,14 +4,14 @@ const initialState = Immutable.Map({
   greeting : '...'
 });
 
-const Actions = {
+export const ActionTypes = {
   'SAY_HELLO' : 'SAY_HELLO',
   'SAY_WELCOME' : 'SAY_WELCOME'
 };
 
 const reducerMap = {
-  [Actions.SAY_HELLO] : (state, data) => state.update('greeting', () => `Hello ${data.name}`),
-  [Actions.SAY_WELCOME] : (state, data) => state.update('greeting', () => `Welcome ${data.name}`)
+  [ActionTypes.SAY_HELLO] : (state, data) => state.update('greeting', () => `Hello ${data.name}`),
+  [ActionTypes.SAY_WELCOME] : (state, data) => state.update('greeting', () => `Welcome ${data.name}`)
 };
 
 const reducer = (state = initialState, action) => {

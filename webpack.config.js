@@ -6,7 +6,7 @@ var precss = require('precss');
 var webpack = require('webpack');
 
 module.exports = {
-  devtool : process.env.production ? '' : 'source-map',
+  devtool : process.env.NODE_ENV !== 'production' ? 'source-map' : '',
   entry : {
     index : path.resolve(__dirname, 'src/index.js')
   },
@@ -43,6 +43,9 @@ module.exports = {
     configFile : path.resolve(__dirname, '.eslintrc.js')
   },
   plugins : [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV !== 'production' ? 'development' : 'production')
+    }),
     new webpack.HotModuleReplacementPlugin()
   ],
   postcss : function (webpack) {
