@@ -21,6 +21,7 @@ module.exports = {
   "rules": {
     "semi": 2,
     "indent": [2, 2],
+    "no-console": 1,
 
     // ES6
     "prefer-const": 1,
