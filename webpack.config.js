@@ -3,6 +3,11 @@ var postcssImport = require('postcss-import');
 var autoprefixer = require('autoprefixer');
 // TODO replace precss with needed plugins
 var precss = require('precss');
+var postcssSimpleVars =    require('postcss-simple-vars');
+var postcssNested =        require('postcss-nested');
+var postcssMixins =        require('postcss-mixins');
+var postcssColorFunction = require('postcss-color-function');
+var cssnano =              require('cssnano');
 var webpack = require('webpack');
 
 module.exports = {
@@ -44,14 +49,21 @@ module.exports = {
   },
   plugins : [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV !== 'production' ? 'development' : 'production')
+      'process.env.NODE_ENV' : JSON.stringify(process.env.NODE_ENV !== 'production' ? 'development' : 'production')
     }),
     new webpack.HotModuleReplacementPlugin()
   ],
   postcss : function (webpack) {
-    return [autoprefixer, postcssImport({
-      addDependencyTo : webpack
-    }), precss];
+    return [
+      autoprefixer,
+      postcssImport({
+        addDependencyTo : webpack
+      }),
+      postcssSimpleVars,
+      postcssNested,
+      postcssMixins,
+      postcssColorFunction
+    ].concat(process.env.NODE_ENV === 'production' ? [] : [cssnano()]);
   },
   resolve : {
     extensions : ['', '.js', '.jsx']
