@@ -1,7 +1,7 @@
 var path = require('path');
 var postcssImport = require('postcss-import');
-//var scss = require('postcss-scss');
 var autoprefixer = require('autoprefixer');
+// TODO replace precss with needed plugins
 var precss = require('precss');
 var webpack = require('webpack');
 

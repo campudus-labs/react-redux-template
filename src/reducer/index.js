@@ -1,13 +1,10 @@
 import Immutable from 'immutable';
+import ActionTypes from '../actions/actionTypes';
 
+// TODO move out of index in smaller parts, create combineReducer for that
 const initialState = Immutable.Map({
   greeting : '...'
 });
-
-export const ActionTypes = {
-  'SAY_HELLO' : 'SAY_HELLO',
-  'SAY_WELCOME' : 'SAY_WELCOME'
-};
 
 const reducerMap = {
   [ActionTypes.SAY_HELLO] : (state, data) => state.update('greeting', () => `Hello ${data.name}`),
