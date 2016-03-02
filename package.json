@@ -8,7 +8,7 @@
     "clean": "rimraf out/",
     "lint": "eslint --ignore-pattern '*.spec.js' --ext .js --ext .jsx src/",
     "test": "mocha 'src/**/*.spec.js' --compilers js:babel-core/register --require ignore-styles",
-    "watch": "parallelshell 'npm run watch:build' 'npm run watch:test'",
+    "watch": "parallelshell \"npm run watch:build\" \"npm run watch:test\"",
     "watch:build": "webpack-dev-server --hot --inline --display-error-details --config webpack.config.js",
     "watch:test": "npm test -- -w"
   },
