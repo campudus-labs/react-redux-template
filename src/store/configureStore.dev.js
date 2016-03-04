@@ -4,10 +4,16 @@ import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 import rootReducer from '../reducer';
 import DevTools from '../components/devtools';
+import {Iterable} from 'immutable';
 
 const enhancer = compose(
   // Middleware you want to use in development:
-  applyMiddleware(thunk, createLogger()),
+  applyMiddleware(thunk, createLogger({
+    stateTransformer : (state) => {
+      if (Iterable.isIterable(state)) return state.toJS();
+      else return state;
+    }
+  })),
   // Required! Enable Redux DevTools with the monitors you chose
   window.devToolsExtension ? window.devToolsExtension() : fDevTools.instrument(),
   // Optional. Lets you write ?debug_session=<key> in address bar to persist debug sessions
