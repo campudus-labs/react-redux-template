@@ -15,7 +15,7 @@ const enhancer = compose(
     }
   })),
   // Required! Enable Redux DevTools with the monitors you chose
-  window.devToolsExtension ? window.devToolsExtension() : fDevTools.instrument(),
+  window.devToolsExtension ? window.devToolsExtension() : DevTools.instrument(),
   // Optional. Lets you write ?debug_session=<key> in address bar to persist debug sessions
   persistState(getDebugSessionKey())
 );
