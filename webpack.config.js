@@ -34,7 +34,7 @@ module.exports = {
       exclude : /node_modules/,
       loader : 'babel',
       query : {
-        presets : ['es2015', 'react', 'stage-2']
+        presets : ['es2015', 'react', 'stage-1']
       }
     }, {
       test : /\.s?css$/,
@@ -56,8 +56,7 @@ module.exports = {
   plugins : [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV' : JSON.stringify(process.env.NODE_ENV !== 'production' ? 'development' : 'production')
-    }),
-    new webpack.HotModuleReplacementPlugin()
+    })
   ],
   postcss : function (webpack) {
     return [

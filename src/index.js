@@ -18,7 +18,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'development' && !window.devToolsExtension) {
   const showDevTools = require('./showDevTools').default;
   showDevTools(store);
 }
